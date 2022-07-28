@@ -6,10 +6,10 @@ import VueApollo from 'vue-apollo'
 
 Vue.use(VueApollo)
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient,
+  defaultClient: apolloClient
 })
 
 new Vue({
   apolloProvider,
-  render: (h) => h(App),
+  render: (h) => h(App)
 }).$mount('#app')

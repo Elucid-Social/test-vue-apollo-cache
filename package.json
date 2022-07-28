@@ -13,8 +13,10 @@
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
-    "graphql": "^16.5.0",
+    "apollo3-cache-persist": "^0.14.1",
+    "graphql": "^15",
     "graphql-tag": "^2.12.6",
+    "localforage": "^1.10.0",
     "vue": "^2.6",
     "vue-apollo": "^3.1.0"
   },
