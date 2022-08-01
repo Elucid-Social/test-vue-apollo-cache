@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import './style.css'
 import App from './App.vue'
-import { apolloClient } from './apollo'
-import VueApollo from 'vue-apollo'
+import { createProvider } from './apollo'
 
-Vue.use(VueApollo)
-const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
-})
+// With no TOP LEVEL AWAIT support
+// createProvider().then((apolloProvider) => {
+//   new Vue({
+//     apolloProvider,
+//     render: (h) => h(App)
+//   }).$mount('#app')
+// })
 
 new Vue({
-  apolloProvider,
+  apolloProvider: await createProvider(),
   render: (h) => h(App)
 }).$mount('#app')
