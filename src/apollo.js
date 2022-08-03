@@ -1,17 +1,17 @@
-import Vue from 'vue'
-import VueApollo from 'vue-apollo'
-
-import { ApolloClient } from 'apollo-client'
-import { createHttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache
+} from '@apollo/client/core'
 import { persistCache, LocalForageWrapper } from 'apollo3-cache-persist'
 import localforage from 'localforage'
 
 const API_HOST = 'https://countries.trevorblades.com/graphql'
+//const API_HOST = 'http://localhost:4000/'
 //const SCHEMA_VERSION = '1'
 //const SCHEMA_VERSION_KEY = 'apollo-schema-version'
 
-export const createProvider = async () => {
+export const createClient = async () => {
   // HTTP connection to the API
   const httpLink = createHttpLink({
     // You should use an absolute URL here
@@ -45,10 +45,5 @@ export const createProvider = async () => {
     cache
   })
 
-  Vue.use(VueApollo)
-  const apolloProvider = new VueApollo({
-    defaultClient: apolloClient
-  })
-
-  return apolloProvider
+  return apolloClient
 }

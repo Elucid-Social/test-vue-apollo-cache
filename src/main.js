@@ -1,7 +1,8 @@
-import Vue from 'vue'
+import Vue, { provide } from 'vue'
 import './style.css'
 import App from './App.vue'
-import { createProvider } from './apollo'
+import { createClient } from './apollo'
+import { DefaultApolloClient } from '@vue/apollo-composable'
 
 // With no TOP LEVEL AWAIT support
 // createProvider().then((apolloProvider) => {
@@ -11,7 +12,12 @@ import { createProvider } from './apollo'
 //   }).$mount('#app')
 // })
 
-new Vue({
-  apolloProvider: await createProvider(),
+const apolloClient = await createClient()
+
+const app = new Vue({
+  setup() {
+    provide(DefaultApolloClient, apolloClient)
+  },
   render: (h) => h(App)
-}).$mount('#app')
+})
+app.$mount('#app')
