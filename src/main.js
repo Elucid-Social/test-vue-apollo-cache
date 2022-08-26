@@ -18,6 +18,9 @@ const app = new Vue({
   setup() {
     provide(DefaultApolloClient, apolloClient)
   },
+  beforeMount() {
+    provide('cc', this.$el.attributes['data-cc'].value)
+  },
   render: (h) => h(App)
 })
 app.$mount('#app')
