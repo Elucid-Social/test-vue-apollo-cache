@@ -3,7 +3,6 @@ import './style.css'
 import App from './App.vue'
 import { createClient } from './apollo'
 import { DefaultApolloClient } from '@vue/apollo-composable'
-
 // With no TOP LEVEL AWAIT support
 // createProvider().then((apolloProvider) => {
 //   new Vue({
@@ -14,7 +13,6 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 
 import { createPinia, PiniaVuePlugin } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
-
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
 pinia.use(piniaPersist)
