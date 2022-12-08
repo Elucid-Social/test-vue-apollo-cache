@@ -12,10 +12,24 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 // })
 
 import { createPinia, PiniaVuePlugin } from 'pinia'
-import piniaPersist from 'pinia-plugin-persist'
+import { createPersistedStatePlugin } from 'pinia-plugin-persistedstate-2'
+import localforage from 'localforage'
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
-pinia.use(piniaPersist)
+const installPersistedStatePlugin = createPersistedStatePlugin({
+  storage: {
+    getItem: async (key) => {
+      return localforage.getItem(key)
+    },
+    setItem: async (key, value) => {
+      return localforage.setItem(key, value)
+    },
+    removeItem: async (key) => {
+      return localforage.removeItem(key)
+    },
+  },
+})
+pinia.use((context) => installPersistedStatePlugin(context))
 
 const apolloClient = await createClient()
 
